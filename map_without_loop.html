@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>No loops :(</title>
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+</head>
+<body>
+
+<div id="map" style="width: 600px; height: 400px;"></div>
+<script>
+
+    // This next lines are copied from the tutorial at leafletjs.com. Leaflet is the name of the mapping library we're using.
+	var mymap = L.map('map').setView([25.0, -75.0], 3);
+	L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+		maxZoom: 18,
+		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+		id: 'mapbox/streets-v11',
+		tileSize: 512,
+		zoomOffset: -1
+	}).addTo(mymap);
+
+    // These are the latitude and longitude corrdinates for some cities
+    var newYork = [40.7, -74.0];
+    var medellin = [6.2, -75.6];
+    var bogota = [4.7, -74.0];
+    
+    // Now we have 3 cities. If we wanted to add those cities to the map, we would do the following.
+	L.marker(newYork).addTo(mymap)
+		.bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();
+
+    L.marker(medellin).addTo(mymap)
+		.bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();
+
+    L.marker(bogota).addTo(mymap)
+		.bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();
+
+
+	// As you can see if you open this file in a web browser,
+	// you can see the pins on the map, but there is a problem.
+	
+	// We had to type almost the same exact code three times.
+	// Each time we have to type it, there is a chance we type something wrong.
+	// Also, imagine if we had 100 cities, or a thousand. Typing the same thing
+	// that many times would be a terrible waste.
+
+	// A better way to do this would be to use loops. To to maps_with_loops.html to see why.
+</script>
+</body>
+</html>

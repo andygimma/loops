@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Loops!</title>
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+</head>
+<body>
+
+
+
+<div id="map" style="width: 600px; height: 400px;"></div>
+<script>
+    // Everything about this JavaScript is the same until line 40.
+
+	const mymap = L.map('map').setView([25.0, -75.0], 3);
+	L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+		maxZoom: 18,
+		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+		id: 'mapbox/streets-v11',
+		tileSize: 512,
+		zoomOffset: -1
+	}).addTo(mymap);
+
+    const newYork = [40.7, -74.0];
+    const medellin = [6.2, -75.6];
+    const bogota = [4.7, -74.0];
+    
+    // first we create an array we can loop through
+    const citiesArray = [newYork, medellin, bogota];
+
+    // then we use a loop
+    // there are different kinds of loop, we won't use a while loop here
+    // we will use a for loop
+    for (city in citiesArray) {
+        // in the line above, we created the variable 'city'
+        // now we add that to the map
+        L.marker(city).addTo(mymap)
+		    .bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();
+    }
+
+    // Notice, because we used a loop, we only had to write L.marker() one time
+    // If we had 100 cities, this would have saved us a lot of writing.
+    // This is when loops become useful.
+    // When we have an array of something, and we want to perform the same action on each member of the array
+    // and we don't want to write the same code over and over again
+</script>
+</body>
+</html>
