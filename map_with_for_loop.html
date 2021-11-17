@@ -17,7 +17,7 @@
 
 <div id="map" style="width: 600px; height: 400px;"></div>
 <script>
-    // Everything about this JavaScript is the same until line 40.
+    // Everything about this JavaScript is the same until line 36.
 
 	const mymap = L.map('map').setView([25.0, -75.0], 3);
 	L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
@@ -33,18 +33,19 @@
     const medellin = [6.2, -75.6];
     const bogota = [4.7, -74.0];
     
-    // first we create an array we can loop through
+    // So we don't have to repeat our code to add all of the cities above,
+    // let's first add them to an array:
     const citiesArray = [newYork, medellin, bogota];
 
-    // then we use a loop
-    // there are different kinds of loop, we won't use a while loop here
-    // we will use a for loop
-    for (city in citiesArray) {
-        // in the line above, we created the variable 'city'
-        // now we add that to the map
+    // Now we use a loop to go through each element in the array, and add them all to the map.
+    // There are different kinds of loop, we won't use a while loop here, we will use a forEach loop.
+    // Here is a link that explains forEach loops:
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
+
+    citiesArray.forEach(city => {
         L.marker(city).addTo(mymap)
 		    .bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();
-    }
+    });
 
     // Notice, because we used a loop, we only had to write L.marker() one time
     // If we had 100 cities, this would have saved us a lot of writing.
